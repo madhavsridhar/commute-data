@@ -99,7 +99,7 @@
     <div class="inputs">
         <input type="text" id="source" placeholder="Source (e.g., Central Park)" value="">
         <input type="text" id="destination" placeholder="Destination (e.g., Madison Square Garden)" value="">
-        <div class="radio-container time-range">
+        <!-- <div class="radio-container time-range">
             <input type="radio" id="weekday" name="time-range" value="weekday" checked> Weekday
             <input type="radio" id="weekend" name="time-range" value="weekend"> Weekend
         </div>
@@ -110,9 +110,9 @@
             <input type="radio" id="quarter-hourly" name="frequency" value="quarter-hourly"> 15 min
         </div>
 
-        <select id="timeSelect" multiple>
+        <select id="timeSelect" multiple> -->
             <!-- Options will be populated by JavaScript -->
-        </select>
+        <!-- </select> -->
 
         <button id="get-current-time" onclick="fetchCurrentCommute()">Get Current Time</button>
     </div>
@@ -150,12 +150,17 @@
             console.log('Starting fetchCurrentCommute function... (index.html frontend)');
             const source = document.getElementById('source').value;
             const destination = document.getElementById('destination').value;
-            const timeRange = document.querySelector('input[name="time-range"]:checked').value;
-            const frequency = document.querySelector('input[name="frequency"]:checked').value;
-            console.log('Received source:', source, ' and destination:', destination, ' and time range:', timeRange, ' and frequency:', frequency);
+            // const timeRange = document.querySelector('input[name="time-range"]:checked').value;
+            // const frequency = document.querySelector('input[name="frequency"]:checked').value;
+            console.log('Received source:', source, ' and destination:', destination);
+            // console.log('Received source:', source, ' and destination:', destination, ' and time range:', timeRange, ' and frequency:', frequency);
+
             
             try {
-                const response = await fetch(`/api/commute/current?source=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}&timeRange=${encodeURIComponent(timeRange)}&frequency=${encodeURIComponent(frequency)}`);
+                
+                const response = await fetch(`/api/commute/current?source=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}`);
+                // const response = await fetch(`/api/commute/current?source=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}&timeRange=${encodeURIComponent(timeRange)}&frequency=${encodeURIComponent(frequency)}`);
+
                 const data = await response.json();
                 document.getElementById('currentTime').textContent = `${data.duration.toFixed(1)} minutes`;
                 

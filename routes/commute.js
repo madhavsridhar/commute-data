@@ -15,6 +15,7 @@ async function fetchAndStoreCommuteTime(req) {
   console.log('Starting fetchAndStoreCommuteTime function... (commute.js)');
   try {
     const { source, destination } = req.query;
+    // const { source, destination, timeRange, frequency } = req.query;
     
     // Validate input parameters
     if (!source || !destination) {
@@ -34,6 +35,7 @@ async function fetchAndStoreCommuteTime(req) {
     console.log('Fetching from Google Maps API...');
     
     const duration = await fetchCommuteTime(source, destination);
+    // const duration = await fetchCommuteTime(source, destination, departureTime);
     
     console.log('Received duration from API:', duration);
     

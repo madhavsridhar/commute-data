@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-export async function fetchCommuteTime(source, destination, departureTime) {
+export async function fetchCommuteTime(source, destination, departureTime="now") {
   console.log('Starting fetchCommuteTime function...(googleMaps.js)', { source, destination, departureTime });
   
   try {
